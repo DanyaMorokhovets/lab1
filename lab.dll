@@ -1,0 +1,82 @@
+﻿// AbstractMailFactory.cs
+public abstract class AbstractMailFactory
+{
+    public abstract AbstractSender CreateSender();
+    public abstract AbstractReceiver CreateReceiver();
+}
+
+// AbstractSender.cs
+public abstract class AbstractSender
+{
+    public abstract void SendMessage(string message);
+}
+
+// AbstractReceiver.cs
+public abstract class AbstractReceiver
+{
+    public abstract void ReceiveMessage();
+}
+
+// GmailFactory.cs
+public class GmailFactory : AbstractMailFactory
+{
+    public override AbstractSender CreateSender()
+    {
+        return new GmailSender();
+    }
+
+    public override AbstractReceiver CreateReceiver()
+    {
+        return new GmailReceiver();
+    }
+}
+
+// GmailSender.cs
+public class GmailSender : AbstractSender
+{
+    public override void SendMessage(string message)
+    {
+        Console.WriteLine($"Gmail: Sending message - {message}");
+    }
+}
+
+// GmailReceiver.cs
+public class GmailReceiver : AbstractReceiver
+{
+    public override void ReceiveMessage()
+    {
+        Console.WriteLine("Gmail: Receiving message");
+    }
+}
+
+// OutlookFactory.cs
+public class OutlookFactory : AbstractMailFactory
+{
+    public override AbstractSender CreateSender()
+    {
+        return new OutlookSender();
+    }
+
+    public override AbstractReceiver CreateReceiver()
+    {
+        return new OutlookReceiver();
+    }
+}
+
+// OutlookSender.cs
+public class OutlookSender : AbstractSender
+{
+    public override void SendMessage(string message)
+    {
+        Console.WriteLine($"Outlook: Sending message - {message}");
+    }
+}
+
+// OutlookReceiver.cs
+public class OutlookReceiver : AbstractReceiver
+{
+    public override void ReceiveMessage()
+    {
+        Console.WriteLine("Outlook: Receiving message");
+    }
+}
